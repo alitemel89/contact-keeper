@@ -8,7 +8,7 @@ import {
   CLEAR_FILTER,
 } from "../types";
 
-export default function (state, action) {
+export default (state, action) => {
   switch (action.type) {
     case ADD_CONTACT:
       return {
@@ -21,7 +21,7 @@ export default function (state, action) {
         ...state,
         contacts: state.contacts.map((contact) =>
           contact.id === action.payload.id ? action.payload : contact
-        )
+        ),
       };
 
     case DELETE_CONTACT:
@@ -42,6 +42,21 @@ export default function (state, action) {
       return {
         ...state,
         current: null,
+      };
+
+    case FILTER_CONTACTS:
+      return {
+        ...state,
+        filtered: state.contacts.filter((contact) => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return contact.name.match(regex) || contact.email.match(regex);
+        }),
+      };
+
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null,
       };
 
     default:
