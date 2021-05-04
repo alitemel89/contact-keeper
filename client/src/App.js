@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alerts from "./components/layout/Alerts";
@@ -10,6 +9,8 @@ import Home from "./components/pages/Home";
 import AlertState from "./context/alert/AlertState";
 import AuthState from "./context/auth/AuthState";
 import ContactState from "./context/contact/ContactState";
+import "./App.css";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
               <div className="container">
                 <Alerts />
                 <Switch>
-                  <Route exact path="/" component={Home} />
+                  <PrivateRoute exact path="/" component={Home} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />

@@ -6,9 +6,9 @@ import AlertContext from "./alertContext";
 import { SET_ALERT, REMOVE_ALERT } from "../types";
 
 const AlertState = (props) => {
-  const initalState = [];
+  const initialState = [];
 
-  const [state, dispatch] = useReducer(alertReducer, initalState);
+  const [state, dispatch] = useReducer(alertReducer, initialState);
 
   // Set Alert
   const setAlert = (msg, type, timeout = 5000) => {
